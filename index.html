@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Interactive Chemistry Study Guide: Weak Acids, Buffers & More</title>
+  <title>Interactive Chemistry Study Guide: Weak Acids, Buffers & Trends</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -17,6 +17,7 @@
       color: #fff;
       padding: 1rem;
       text-align: center;
+      user-select: none; /* Title non-selectable */
     }
     nav {
       background: #eee;
@@ -67,6 +68,7 @@
       border: none;
       border-radius: 3px;
       cursor: pointer;
+      user-select: none; /* Buttons non-selectable */
     }
     button:hover {
       background: #003d73;
@@ -75,6 +77,11 @@
       margin-top: 0.8rem;
       font-weight: bold;
     }
+    .math {
+      text-align: center;
+      font-size: 1.2em;
+      margin: 1rem 0;
+    }
     footer {
       text-align: center;
       padding: 1rem;
@@ -82,6 +89,11 @@
       margin-top: 2rem;
     }
   </style>
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
 </head>
 <body>
   <header>
@@ -95,32 +107,40 @@
     <a href="#chapter3">Acid–Base Equilibrium</a>
     <a href="#chapter4">pH Calculations</a>
     <a href="#chapter5">Titrations &amp; More</a>
+    <a href="#chapter6">Trends in Acid Strength</a>
   </nav>
   
   <!-- Chapter 1: Weak Acids and Ka Calculation -->
   <section id="chapter1">
     <h2>Chapter 1: Weak Acids and Ka Calculations</h2>
     <p>
-      Weak acids partially dissociate in water. The dissociation of a generic weak acid, HA, is given by:
+      Weak acids partially dissociate in water. The dissociation of a generic weak acid, \( \mathrm{HA} \), is given by:
     </p>
-    <p style="text-align:center; font-size: 1.2em;"><strong>HA ⇌ H⁺ + A⁻</strong></p>
+    <div class="math">
+      $$\mathrm{HA} \rightleftharpoons H^+ + A^-$$
+    </div>
     <p>
-      The acid dissociation constant (Ka) is defined as:
+      The acid dissociation constant is defined as:
     </p>
-    <p style="text-align:center;"><strong>Ka = [H⁺][A⁻] / [HA]</strong></p>
+    <div class="math">
+      $$K_a = \frac{[H^+][A^-]}{[HA]}$$
+    </div>
     <p>
-      The pKa is defined as: <strong>pKa = -log₁₀(Ka)</strong>.
+      And the pKa is defined as:
     </p>
+    <div class="math">
+      $$pK_a = -\log_{10}(K_a)$$
+    </div>
     
     <div class="calc-container">
       <h3>Ka Calculator</h3>
-      <label for="h_conc">Hydrogen ion concentration [H⁺] (mol/L):</label>
+      <label for="h_conc">Hydrogen ion concentration \( [H^+] \) (mol/L):</label>
       <input type="number" id="h_conc" placeholder="e.g., 1e-3" step="any">
       
-      <label for="a_conc">Conjugate base concentration [A⁻] (mol/L):</label>
+      <label for="a_conc">Conjugate base concentration \( [A^-] \) (mol/L):</label>
       <input type="number" id="a_conc" placeholder="e.g., 1e-3" step="any">
       
-      <label for="ha_conc">Acid concentration [HA] (mol/L):</label>
+      <label for="ha_conc">Acid concentration \( [HA] \) (mol/L):</label>
       <input type="number" id="ha_conc" placeholder="e.g., 0.1" step="any">
       
       <button onclick="calculateKa()">Calculate Ka</button>
@@ -139,22 +159,24 @@
   <section id="chapter2">
     <h2>Chapter 2: Buffer Solutions</h2>
     <p>
-      Buffer solutions resist changes in pH upon the addition of small amounts of acid or base. A buffer is typically composed of a weak acid and its conjugate base.
+      Buffer solutions resist changes in pH upon the addition of small amounts of acid or base. A typical buffer is composed of a weak acid and its conjugate base.
     </p>
     <p>
       The Henderson–Hasselbalch equation describes the pH of a buffer:
     </p>
-    <p style="text-align:center;"><strong>pH = pKa + log₁₀ ([A⁻]/[HA])</strong></p>
+    <div class="math">
+      $$\mathrm{pH} = pK_a + \log_{10}\left(\frac{[A^-]}{[HA]}\right)$$
+    </div>
     
     <div class="calc-container">
       <h3>Buffer pH Calculator</h3>
       <label for="buffer_pka">pKa of the acid:</label>
       <input type="number" id="buffer_pka" placeholder="e.g., 4.75" step="any">
       
-      <label for="buffer_a">Concentration of conjugate base [A⁻] (mol/L):</label>
+      <label for="buffer_a">Concentration of conjugate base \( [A^-] \) (mol/L):</label>
       <input type="number" id="buffer_a" placeholder="e.g., 0.1" step="any">
       
-      <label for="buffer_ha">Concentration of acid [HA] (mol/L):</label>
+      <label for="buffer_ha">Concentration of acid \( [HA] \) (mol/L):</label>
       <input type="number" id="buffer_ha" placeholder="e.g., 0.1" step="any">
       
       <button onclick="calculateBufferPH()">Calculate pH</button>
@@ -171,8 +193,10 @@
     </p>
     <ul>
       <li><strong>Le Chatelier's Principle:</strong> When a system at equilibrium is disturbed, it will shift to counteract the change.</li>
-      <li><strong>Autoionization of Water:</strong> H₂O ⇌ H⁺ + OH⁻ with Kw = [H⁺][OH⁻] ≈ 1.0×10⁻¹⁴ at 25°C.</li>
-      <li><strong>Relationship:</strong> pH + pOH = 14 (at 25°C).</li>
+      <li><strong>Autoionization of Water:</strong> 
+        \( \mathrm{H_2O} \rightleftharpoons H^+ + OH^- \) with \( K_w = [H^+][OH^-] \approx 1.0 \times 10^{-14} \) at 25°C.
+      </li>
+      <li><strong>Relationship:</strong> \( \mathrm{pH} + \mathrm{pOH} = 14 \) (at 25°C).</li>
     </ul>
     <p>
       Understanding these concepts is crucial for analyzing acid–base reactions, designing buffer systems, and calculating pH in different environments.
@@ -185,22 +209,24 @@
     <p>
       pH is a measure of the acidity of a solution and is defined as:
     </p>
-    <p style="text-align:center;"><strong>pH = -log₁₀([H⁺])</strong></p>
+    <div class="math">
+      $$\mathrm{pH} = -\log_{10}([H^+])$$
+    </div>
     <p>
       You can also reverse this equation to calculate the hydrogen ion concentration from the pH.
     </p>
     
     <div class="calc-container">
       <h3>pH Calculator</h3>
-      <label for="h_concentration">Hydrogen ion concentration [H⁺] (mol/L):</label>
+      <label for="h_concentration">Hydrogen ion concentration \( [H^+] \) (mol/L):</label>
       <input type="number" id="h_concentration" placeholder="e.g., 1e-7" step="any">
       <button onclick="calculatePH()">Calculate pH</button>
       <div class="result" id="ph_result"></div>
       
-      <h4>Reverse Calculation: [H⁺] from pH</h4>
+      <h4>Reverse Calculation: \( [H^+] \) from pH</h4>
       <label for="ph_value">Enter pH:</label>
       <input type="number" id="ph_value" placeholder="e.g., 7" step="any">
-      <button onclick="calculateHConcentration()">Calculate [H⁺]</button>
+      <button onclick="calculateHConcentration()">Calculate [H^+]</button>
       <div class="result" id="h_from_ph_result"></div>
     </div>
   </section>
@@ -213,11 +239,45 @@
     </p>
     <ul>
       <li>The <strong>equivalence point</strong> is reached when the amount of titrant exactly neutralizes the analyte.</li>
-      <li>The <strong>half-equivalence point</strong> is when half of the analyte has been neutralized – here, pH = pKa for a weak acid.</li>
+      <li>The <strong>half-equivalence point</strong> is when half of the analyte has been neutralized – here, \( \mathrm{pH} = pK_a \) for a weak acid.</li>
       <li>Titration curves can reveal important information about the acid–base properties of the solution.</li>
     </ul>
     <p>
       While a full titration simulation can be complex, understanding these principles is essential for laboratory analysis and practical chemistry.
+    </p>
+  </section>
+  
+  <!-- Chapter 6: Trends in Acid Strength -->
+  <section id="chapter6">
+    <h2>Chapter 6: Trends in Acid Strength</h2>
+    <p>
+      Acid strength is influenced by several factors, including the electronegativity of atoms attached to the central atom and the oxidation state of the central atom.
+    </p>
+    <h3>Effect of Electronegative Substituents</h3>
+    <p>
+      When additional electronegative atoms bond to the central atom (Y) in an acid, they withdraw electron density via the inductive effect. This stabilizes the negative charge on the conjugate base and increases acid strength. For example, in a series of oxyacids of the form \( \mathrm{HXO_n} \), as the number of oxygen atoms increases, the conjugate base is better stabilized, making the acid stronger.
+    </p>
+    <h3>Effect of Oxidation Number</h3>
+    <p>
+      In a series of oxyacids, the acidity increases with the oxidation number of the central atom. A higher oxidation state indicates a stronger electron-withdrawing effect, further stabilizing the conjugate base.
+    </p>
+    <h3>Ranking of Halogen Oxyacids</h3>
+    <p>
+      Consider the 0.1 M solutions of the following oxyacids:
+    </p>
+    <ul>
+      <li>\( \mathrm{HClO_2} \) (chlorous acid)</li>
+      <li>\( \mathrm{HBrO_2} \) (bromous acid)</li>
+      <li>\( \mathrm{HIO_2} \) (iodous acid)</li>
+    </ul>
+    <p>
+      Based on the electronegativity of the halogen, the expected order of acid strength is:
+    </p>
+    <div class="math">
+      $$\mathrm{HClO_2} > \mathrm{HBrO_2} > \mathrm{HIO_2}$$
+    </div>
+    <p>
+      Chlorine is more electronegative than bromine, and bromine is more electronegative than iodine. Therefore, the conjugate base of \( \mathrm{HClO_2} \) is most stabilized, making it the strongest acid among the three.
     </p>
   </section>
   
