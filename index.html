@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <title>Chemistry Exam 3 &amp; More</title>
   <style>
+    /* Smooth scrolling for in-page links */
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -25,6 +29,12 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      transition: all 0.3s ease;
+    }
+    /* Shrinking nav when scrolling */
+    nav.small-nav {
+      padding: 0.5rem;
+      font-size: 0.9em;
     }
     nav a {
       margin: 0 1rem;
@@ -129,6 +139,7 @@
     <a href="#chapter8">8. Strong Acid Factors</a>
     <a href="#chapter9">9. Titration Curves</a>
     <a href="#chapter10">10. Periodic Table</a>
+    <a href="#chapter11">11. Polyprotic Acids</a>
   </nav>
   
   <!-- Chapter 1: Weak Acids and Ka Calculation -->
@@ -200,6 +211,12 @@
       <button onclick="calculateBufferPH()">Calculate pH</button>
       <div class="result" id="buffer_result"></div>
     </div>
+    <p>
+      <strong>Creating a Buffer:</strong> To create a buffer solution, mix a weak acid with its conjugate base in a controlled ratio. For example, if you mix equal moles of acid and base, you reach the half-equivalence point where <em>pH = pKa</em>. This is an ideal condition for a buffer because the solution can neutralize added acid or base.
+    </p>
+    <p>
+      At the <strong>half-equivalence point</strong>, exactly half of the weak acid has been neutralized, so the concentrations of the acid and its conjugate base are equal. Hence, by the Henderson–Hasselbalch equation, <em>pH = pKa</em>.
+    </p>
   </section>
   
   <!-- Chapter 3: Acid–Base Equilibrium Basics -->
@@ -255,7 +272,7 @@
     </p>
     <ul>
       <li><strong>Equivalence Point:</strong> When the titrant exactly neutralizes the analyte.</li>
-      <li><strong>Half-Equivalence Point:</strong> Where half of the analyte has been neutralized – for a weak acid, pH = pKa.</li>
+      <li><strong>Half-Equivalence Point:</strong> When half of the analyte has been neutralized – for a weak acid, at this point, <em>pH = pKa</em>.</li>
       <li>Titration curves reveal the acid–base properties of the solution.</li>
     </ul>
     <p>
@@ -432,11 +449,46 @@
     </div>
   </section>
   
+  <!-- Chapter 11: Polyprotic Acids and Advanced Titration Analysis -->
+  <section id="chapter11">
+    <h2>Chapter 11: Polyprotic Acids and Advanced Titration Analysis</h2>
+    <p>
+      Polyprotic acids can donate more than one proton and thus have multiple dissociation steps. Their pH calculation is more complex since each dissociation has its own \(K_a\) value (e.g., \(K_{a1}\), \(K_{a2}\), etc.).
+    </p>
+    <p>
+      In most cases, the first dissociation is dominant in determining the pH of a dilute solution. However, during titration, you may observe two distinct equivalence points corresponding to the first and second deprotonation.
+    </p>
+    <p>
+      <strong>Analyzing Polyprotic Titration Curves:</strong>  
+      <br>• The titration curve of a polyprotic acid typically shows two (or more) inflection points.
+      <br>• The <em>half-equivalence point</em> for each deprotonation occurs when half of the acid has been neutralized. At that point, <em>pH = pKa</em> for that particular dissociation step.
+      <br>• By analyzing these points on the titration curve, you can estimate the individual pKa values (for example, pKa₁ and pKa₂).
+    </p>
+    <p>
+      When titrating a polyprotic acid such as H<sub>2</sub>A:
+      <br>• The first equivalence point occurs when one proton is removed; at the half-equivalence of this step, <em>pH = pKa₁</em>.
+      <br>• The second equivalence point occurs when both protons are removed; at the half-equivalence of the second step, <em>pH = pKa₂</em>.
+    </p>
+    <p>
+      This advanced analysis is essential when dealing with acids that can donate multiple protons, such as phosphoric acid (H<sub>3</sub>PO<sub>4</sub>).
+    </p>
+  </section>
+  
   <footer>
-    <p> 2025 DanCodeRoman Enterprise &copy;</p>
+    <p>2025 DanCodeRoman Enterprise &copy;</p>
   </footer>
   
   <script>
+    // Shrink nav on scroll
+    window.addEventListener('scroll', function() {
+      var nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('small-nav');
+      } else {
+        nav.classList.remove('small-nav');
+      }
+    });
+    
     // Chapter 1: Calculate Ka
     function calculateKa() {
       const h = parseFloat(document.getElementById('h_conc').value);
