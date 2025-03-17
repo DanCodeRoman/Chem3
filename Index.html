@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Chemistry Study Guide: Weak Acids, Buffers & More</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background: #00539C;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      background: #eee;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      margin: 0 1rem;
+      color: #00539C;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      background: #fff;
+      margin: 1rem auto;
+      padding: 1rem 2rem;
+      max-width: 800px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #00539C;
+    }
+    .calc-container {
+      background: #f0f8ff;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 1rem 0;
+    }
+    label {
+      display: block;
+      margin-top: 0.5rem;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 0.4rem;
+      margin-top: 0.2rem;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 0.8rem;
+      padding: 0.5rem 1rem;
+      background: #00539C;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #003d73;
+    }
+    .result {
+      margin-top: 0.8rem;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #eee;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Interactive Chemistry Study Guide</h1>
+    <p>Post-Apocalypse Edition – Learn to survive with science!</p>
+  </header>
+  
+  <nav>
+    <a href="#chapter1">Weak Acids &amp; Ka</a>
+    <a href="#chapter2">Buffer Solutions</a>
+    <a href="#chapter3">Acid–Base Equilibrium</a>
+    <a href="#chapter4">pH Calculations</a>
+    <a href="#chapter5">Titrations &amp; More</a>
+  </nav>
+  
+  <!-- Chapter 1: Weak Acids and Ka Calculation -->
+  <section id="chapter1">
+    <h2>Chapter 1: Weak Acids and Ka Calculations</h2>
+    <p>
+      Weak acids partially dissociate in water. The dissociation of a generic weak acid, HA, is given by:
+    </p>
+    <p style="text-align:center; font-size: 1.2em;"><strong>HA ⇌ H⁺ + A⁻</strong></p>
+    <p>
+      The acid dissociation constant (Ka) is defined as:
+    </p>
+    <p style="text-align:center;"><strong>Ka = [H⁺][A⁻] / [HA]</strong></p>
+    <p>
+      The pKa is defined as: <strong>pKa = -log₁₀(Ka)</strong>.
+    </p>
+    
+    <div class="calc-container">
+      <h3>Ka Calculator</h3>
+      <label for="h_conc">Hydrogen ion concentration [H⁺] (mol/L):</label>
+      <input type="number" id="h_conc" placeholder="e.g., 1e-3" step="any">
+      
+      <label for="a_conc">Conjugate base concentration [A⁻] (mol/L):</label>
+      <input type="number" id="a_conc" placeholder="e.g., 1e-3" step="any">
+      
+      <label for="ha_conc">Acid concentration [HA] (mol/L):</label>
+      <input type="number" id="ha_conc" placeholder="e.g., 0.1" step="any">
+      
+      <button onclick="calculateKa()">Calculate Ka</button>
+      
+      <div class="result" id="ka_result"></div>
+      
+      <h4>pKa Conversion</h4>
+      <label for="ka_value">Enter Ka value:</label>
+      <input type="number" id="ka_value" placeholder="e.g., 1.8e-5" step="any">
+      <button onclick="calculatePka()">Calculate pKa</button>
+      <div class="result" id="pka_result"></div>
+    </div>
+  </section>
+  
+  <!-- Chapter 2: Buffer Solutions -->
+  <section id="chapter2">
+    <h2>Chapter 2: Buffer Solutions</h2>
+    <p>
+      Buffer solutions resist changes in pH upon the addition of small amounts of acid or base. A buffer is typically composed of a weak acid and its conjugate base.
+    </p>
+    <p>
+      The Henderson–Hasselbalch equation describes the pH of a buffer:
+    </p>
+    <p style="text-align:center;"><strong>pH = pKa + log₁₀ ([A⁻]/[HA])</strong></p>
+    
+    <div class="calc-container">
+      <h3>Buffer pH Calculator</h3>
+      <label for="buffer_pka">pKa of the acid:</label>
+      <input type="number" id="buffer_pka" placeholder="e.g., 4.75" step="any">
+      
+      <label for="buffer_a">Concentration of conjugate base [A⁻] (mol/L):</label>
+      <input type="number" id="buffer_a" placeholder="e.g., 0.1" step="any">
+      
+      <label for="buffer_ha">Concentration of acid [HA] (mol/L):</label>
+      <input type="number" id="buffer_ha" placeholder="e.g., 0.1" step="any">
+      
+      <button onclick="calculateBufferPH()">Calculate pH</button>
+      
+      <div class="result" id="buffer_result"></div>
+    </div>
+  </section>
+  
+  <!-- Chapter 3: Acid–Base Equilibrium Basics -->
+  <section id="chapter3">
+    <h2>Chapter 3: Acid–Base Equilibrium Basics</h2>
+    <p>
+      Acid–base reactions involve proton transfer and are governed by equilibrium principles. Key topics include:
+    </p>
+    <ul>
+      <li><strong>Le Chatelier's Principle:</strong> When a system at equilibrium is disturbed, it will shift to counteract the change.</li>
+      <li><strong>Autoionization of Water:</strong> H₂O ⇌ H⁺ + OH⁻ with Kw = [H⁺][OH⁻] ≈ 1.0×10⁻¹⁴ at 25°C.</li>
+      <li><strong>Relationship:</strong> pH + pOH = 14 (at 25°C).</li>
+    </ul>
+    <p>
+      Understanding these concepts is crucial for analyzing acid–base reactions, designing buffer systems, and calculating pH in different environments.
+    </p>
+  </section>
+  
+  <!-- Chapter 4: pH Calculations -->
+  <section id="chapter4">
+    <h2>Chapter 4: pH Calculations</h2>
+    <p>
+      pH is a measure of the acidity of a solution and is defined as:
+    </p>
+    <p style="text-align:center;"><strong>pH = -log₁₀([H⁺])</strong></p>
+    <p>
+      You can also reverse this equation to calculate the hydrogen ion concentration from the pH.
+    </p>
+    
+    <div class="calc-container">
+      <h3>pH Calculator</h3>
+      <label for="h_concentration">Hydrogen ion concentration [H⁺] (mol/L):</label>
+      <input type="number" id="h_concentration" placeholder="e.g., 1e-7" step="any">
+      <button onclick="calculatePH()">Calculate pH</button>
+      <div class="result" id="ph_result"></div>
+      
+      <h4>Reverse Calculation: [H⁺] from pH</h4>
+      <label for="ph_value">Enter pH:</label>
+      <input type="number" id="ph_value" placeholder="e.g., 7" step="any">
+      <button onclick="calculateHConcentration()">Calculate [H⁺]</button>
+      <div class="result" id="h_from_ph_result"></div>
+    </div>
+  </section>
+  
+  <!-- Chapter 5: Titrations & Additional Topics -->
+  <section id="chapter5">
+    <h2>Chapter 5: Titrations &amp; Additional Topics</h2>
+    <p>
+      Titration is an analytical method used to determine the concentration of an unknown solution. In an acid–base titration:
+    </p>
+    <ul>
+      <li>The <strong>equivalence point</strong> is reached when the amount of titrant exactly neutralizes the analyte.</li>
+      <li>The <strong>half-equivalence point</strong> is when half of the analyte has been neutralized – here, pH = pKa for a weak acid.</li>
+      <li>Titration curves can reveal important information about the acid–base properties of the solution.</li>
+    </ul>
+    <p>
+      While a full titration simulation can be complex, understanding these principles is essential for laboratory analysis and practical chemistry.
+    </p>
+  </section>
+  
+  <footer>
+    <p>&copy; 2025 Interactive Chemistry Guide. Stay curious and prepared!</p>
+  </footer>
+  
+  <script>
+    // Chapter 1: Calculate Ka from input concentrations.
+    function calculateKa() {
+      const h = parseFloat(document.getElementById('h_conc').value);
+      const a = parseFloat(document.getElementById('a_conc').value);
+      const ha = parseFloat(document.getElementById('ha_conc').value);
+      const resultDiv = document.getElementById('ka_result');
+      if (isNaN(h) || isNaN(a) || isNaN(ha) || ha === 0) {
+        resultDiv.textContent = "Please enter valid numbers (and ensure [HA] is not zero).";
+        return;
+      }
+      const ka = (h * a) / ha;
+      resultDiv.textContent = "Calculated Ka: " + ka.toExponential(3);
+    }
+    
+    // Calculate pKa from Ka value.
+    function calculatePka() {
+      const kaVal = parseFloat(document.getElementById('ka_value').value);
+      const resultDiv = document.getElementById('pka_result');
+      if (isNaN(kaVal) || kaVal <= 0) {
+        resultDiv.textContent = "Please enter a valid positive Ka value.";
+        return;
+      }
+      const pKa = -Math.log10(kaVal);
+      resultDiv.textContent = "Calculated pKa: " + pKa.toFixed(3);
+    }
+    
+    // Chapter 2: Buffer pH Calculation using Henderson–Hasselbalch.
+    function calculateBufferPH() {
+      const pKa = parseFloat(document.getElementById('buffer_pka').value);
+      const a = parseFloat(document.getElementById('buffer_a').value);
+      const ha = parseFloat(document.getElementById('buffer_ha').value);
+      const resultDiv = document.getElementById('buffer_result');
+      if (isNaN(pKa) || isNaN(a) || isNaN(ha) || ha <= 0) {
+        resultDiv.textContent = "Please enter valid numbers (and ensure [HA] is > 0).";
+        return;
+      }
+      const ratio = a / ha;
+      const pH = pKa + Math.log10(ratio);
+      resultDiv.textContent = "Calculated Buffer pH: " + pH.toFixed(3);
+    }
+    
+    // Chapter 4: Calculate pH from [H⁺].
+    function calculatePH() {
+      const hConc = parseFloat(document.getElementById('h_concentration').value);
+      const resultDiv = document.getElementById('ph_result');
+      if (isNaN(hConc) || hConc <= 0) {
+        resultDiv.textContent = "Please enter a valid positive [H⁺] concentration.";
+        return;
+      }
+      const pH = -Math.log10(hConc);
+      resultDiv.textContent = "Calculated pH: " + pH.toFixed(3);
+    }
+    
+    // Chapter 4: Calculate [H⁺] from pH.
+    function calculateHConcentration() {
+      const pH = parseFloat(document.getElementById('ph_value').value);
+      const resultDiv = document.getElementById('h_from_ph_result');
+      if (isNaN(pH)) {
+        resultDiv.textContent = "Please enter a valid pH value.";
+        return;
+      }
+      const hConc = Math.pow(10, -pH);
+      resultDiv.textContent = "Calculated [H⁺]: " + hConc.toExponential(3) + " mol/L";
+    }
+  </script>
+</body>
+</html>
