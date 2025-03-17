@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Interactive Chemistry Study Guide: Weak Acids, Buffers & Trends</title>
+  <title>Interactive Chemistry Study Guide: Acid–Base Concepts &amp; More</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -36,14 +36,14 @@
       background: #fff;
       margin: 1rem auto;
       padding: 1rem 2rem;
-      max-width: 800px;
+      max-width: 900px;
       border-radius: 5px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    h2 {
+    h2, h3, h4 {
       color: #00539C;
     }
-    .calc-container {
+    .calc-container, .interactive-container, .visual-container {
       background: #f0f8ff;
       padding: 1rem;
       border: 1px solid #ccc;
@@ -54,7 +54,7 @@
       display: block;
       margin-top: 0.5rem;
     }
-    input[type="number"] {
+    input[type="number"], select {
       width: 100%;
       padding: 0.4rem;
       margin-top: 0.2rem;
@@ -82,6 +82,23 @@
       font-size: 1.2em;
       margin: 1rem 0;
     }
+    .periodic-table td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .periodic-table td:hover {
+      background-color: #d0e4f5;
+    }
+    .element-detail {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      background: #eef;
+      border: 1px solid #aac;
+      border-radius: 5px;
+    }
     footer {
       text-align: center;
       padding: 1rem;
@@ -98,23 +115,27 @@
 <body>
   <header>
     <h1>Interactive Chemistry Study Guide</h1>
-    <p>Post-Apocalypse Edition – Learn to survive with science!</p>
+    <p>Post-Apocalypse Edition – Stay Prepared with Science!</p>
   </header>
   
   <nav>
-    <a href="#chapter1">Weak Acids &amp; Ka</a>
-    <a href="#chapter2">Buffer Solutions</a>
-    <a href="#chapter3">Acid–Base Equilibrium</a>
-    <a href="#chapter4">pH Calculations</a>
-    <a href="#chapter5">Titrations &amp; More</a>
-    <a href="#chapter6">Trends in Acid Strength</a>
+    <a href="#chapter1">1. Weak Acids</a>
+    <a href="#chapter2">2. Buffers</a>
+    <a href="#chapter3">3. Equilibrium Basics</a>
+    <a href="#chapter4">4. pH Calculations</a>
+    <a href="#chapter5">5. Titrations</a>
+    <a href="#chapter6">6. Acid Trends</a>
+    <a href="#chapter7">7. Weak Bases</a>
+    <a href="#chapter8">8. Strong Acid Factors</a>
+    <a href="#chapter9">9. Titration Curves</a>
+    <a href="#chapter10">10. Periodic Table</a>
   </nav>
   
   <!-- Chapter 1: Weak Acids and Ka Calculation -->
   <section id="chapter1">
-    <h2>Chapter 1: Weak Acids and Ka Calculations</h2>
+    <h2>Chapter 1: Weak Acids and \(K_a\) Calculations</h2>
     <p>
-      Weak acids partially dissociate in water. The dissociation of a generic weak acid, \( \mathrm{HA} \), is given by:
+      Weak acids only partially dissociate in water. For a generic weak acid, \( \mathrm{HA} \), the equilibrium is:
     </p>
     <div class="math">
       $$\mathrm{HA} \rightleftharpoons H^+ + A^-$$
@@ -126,25 +147,23 @@
       $$K_a = \frac{[H^+][A^-]}{[HA]}$$
     </div>
     <p>
-      And the pKa is defined as:
+      And the pKa is:
     </p>
     <div class="math">
       $$pK_a = -\log_{10}(K_a)$$
     </div>
-    
     <div class="calc-container">
       <h3>Ka Calculator</h3>
-      <label for="h_conc">Hydrogen ion concentration \( [H^+] \) (mol/L):</label>
+      <label for="h_conc">[H<sup>+</sup>] (mol/L):</label>
       <input type="number" id="h_conc" placeholder="e.g., 1e-3" step="any">
       
-      <label for="a_conc">Conjugate base concentration \( [A^-] \) (mol/L):</label>
+      <label for="a_conc">[A<sup>-</sup>] (mol/L):</label>
       <input type="number" id="a_conc" placeholder="e.g., 1e-3" step="any">
       
-      <label for="ha_conc">Acid concentration \( [HA] \) (mol/L):</label>
+      <label for="ha_conc">[HA] (mol/L):</label>
       <input type="number" id="ha_conc" placeholder="e.g., 0.1" step="any">
       
       <button onclick="calculateKa()">Calculate Ka</button>
-      
       <div class="result" id="ka_result"></div>
       
       <h4>pKa Conversion</h4>
@@ -159,28 +178,26 @@
   <section id="chapter2">
     <h2>Chapter 2: Buffer Solutions</h2>
     <p>
-      Buffer solutions resist changes in pH upon the addition of small amounts of acid or base. A typical buffer is composed of a weak acid and its conjugate base.
+      Buffers resist changes in pH when small amounts of acid or base are added. They consist of a weak acid and its conjugate base.
     </p>
     <p>
-      The Henderson–Hasselbalch equation describes the pH of a buffer:
+      The Henderson–Hasselbalch equation is:
     </p>
     <div class="math">
       $$\mathrm{pH} = pK_a + \log_{10}\left(\frac{[A^-]}{[HA]}\right)$$
     </div>
-    
     <div class="calc-container">
       <h3>Buffer pH Calculator</h3>
-      <label for="buffer_pka">pKa of the acid:</label>
+      <label for="buffer_pka">pKa:</label>
       <input type="number" id="buffer_pka" placeholder="e.g., 4.75" step="any">
       
-      <label for="buffer_a">Concentration of conjugate base \( [A^-] \) (mol/L):</label>
+      <label for="buffer_a">[A<sup>-</sup>] (mol/L):</label>
       <input type="number" id="buffer_a" placeholder="e.g., 0.1" step="any">
       
-      <label for="buffer_ha">Concentration of acid \( [HA] \) (mol/L):</label>
+      <label for="buffer_ha">[HA] (mol/L):</label>
       <input type="number" id="buffer_ha" placeholder="e.g., 0.1" step="any">
       
       <button onclick="calculateBufferPH()">Calculate pH</button>
-      
       <div class="result" id="buffer_result"></div>
     </div>
   </section>
@@ -189,17 +206,17 @@
   <section id="chapter3">
     <h2>Chapter 3: Acid–Base Equilibrium Basics</h2>
     <p>
-      Acid–base reactions involve proton transfer and are governed by equilibrium principles. Key topics include:
+      Acid–base reactions involve proton transfers governed by equilibrium principles. Important concepts include:
     </p>
     <ul>
-      <li><strong>Le Chatelier's Principle:</strong> When a system at equilibrium is disturbed, it will shift to counteract the change.</li>
+      <li><strong>Le Chatelier’s Principle:</strong> If a system at equilibrium is disturbed, it will shift to counter the change.</li>
       <li><strong>Autoionization of Water:</strong> 
-        \( \mathrm{H_2O} \rightleftharpoons H^+ + OH^- \) with \( K_w = [H^+][OH^-] \approx 1.0 \times 10^{-14} \) at 25°C.
+        $$\mathrm{H_2O \rightleftharpoons H^+ + OH^-} \quad \text{with} \quad K_w \approx 1.0 \times 10^{-14}$$
       </li>
-      <li><strong>Relationship:</strong> \( \mathrm{pH} + \mathrm{pOH} = 14 \) (at 25°C).</li>
+      <li><strong>pH Relationship:</strong> $$\mathrm{pH + pOH = 14}$$ at 25°C.</li>
     </ul>
     <p>
-      Understanding these concepts is crucial for analyzing acid–base reactions, designing buffer systems, and calculating pH in different environments.
+      These principles are fundamental for analyzing reaction conditions and designing buffer systems.
     </p>
   </section>
   
@@ -207,43 +224,42 @@
   <section id="chapter4">
     <h2>Chapter 4: pH Calculations</h2>
     <p>
-      pH is a measure of the acidity of a solution and is defined as:
+      The pH of a solution is defined as:
     </p>
     <div class="math">
       $$\mathrm{pH} = -\log_{10}([H^+])$$
     </div>
     <p>
-      You can also reverse this equation to calculate the hydrogen ion concentration from the pH.
+      You can also calculate the hydrogen ion concentration from the pH.
     </p>
-    
     <div class="calc-container">
       <h3>pH Calculator</h3>
-      <label for="h_concentration">Hydrogen ion concentration \( [H^+] \) (mol/L):</label>
+      <label for="h_concentration">[H<sup>+</sup>] (mol/L):</label>
       <input type="number" id="h_concentration" placeholder="e.g., 1e-7" step="any">
       <button onclick="calculatePH()">Calculate pH</button>
       <div class="result" id="ph_result"></div>
       
-      <h4>Reverse Calculation: \( [H^+] \) from pH</h4>
+      <h4>Reverse Calculation: [H<sup>+</sup>] from pH</h4>
       <label for="ph_value">Enter pH:</label>
       <input type="number" id="ph_value" placeholder="e.g., 7" step="any">
-      <button onclick="calculateHConcentration()">Calculate [H^+]</button>
+      <button onclick="calculateHConcentration()">Calculate [H⁺]</button>
       <div class="result" id="h_from_ph_result"></div>
     </div>
   </section>
   
-  <!-- Chapter 5: Titrations & Additional Topics -->
+  <!-- Chapter 5: Titrations &amp; Additional Topics -->
   <section id="chapter5">
     <h2>Chapter 5: Titrations &amp; Additional Topics</h2>
     <p>
-      Titration is an analytical method used to determine the concentration of an unknown solution. In an acid–base titration:
+      Titration is a method used to determine the concentration of an unknown solution. Key points include:
     </p>
     <ul>
-      <li>The <strong>equivalence point</strong> is reached when the amount of titrant exactly neutralizes the analyte.</li>
-      <li>The <strong>half-equivalence point</strong> is when half of the analyte has been neutralized – here, \( \mathrm{pH} = pK_a \) for a weak acid.</li>
-      <li>Titration curves can reveal important information about the acid–base properties of the solution.</li>
+      <li><strong>Equivalence Point:</strong> When the titrant exactly neutralizes the analyte.</li>
+      <li><strong>Half-Equivalence Point:</strong> Where half of the analyte has been neutralized – for a weak acid, pH = pKa.</li>
+      <li>Titration curves reveal the acid–base properties of the solution.</li>
     </ul>
     <p>
-      While a full titration simulation can be complex, understanding these principles is essential for laboratory analysis and practical chemistry.
+      Mastery of titration concepts is essential for laboratory work and analytical chemistry.
     </p>
   </section>
   
@@ -251,19 +267,19 @@
   <section id="chapter6">
     <h2>Chapter 6: Trends in Acid Strength</h2>
     <p>
-      Acid strength is influenced by several factors, including the electronegativity of atoms attached to the central atom and the oxidation state of the central atom.
+      Acid strength is influenced by the molecular structure. Two major factors include:
     </p>
-    <h3>Effect of Electronegative Substituents</h3>
+    <h3>Electronegative Substituents</h3>
     <p>
-      When additional electronegative atoms bond to the central atom (Y) in an acid, they withdraw electron density via the inductive effect. This stabilizes the negative charge on the conjugate base and increases acid strength. For example, in a series of oxyacids of the form \( \mathrm{HXO_n} \), as the number of oxygen atoms increases, the conjugate base is better stabilized, making the acid stronger.
+      In oxyacids of the form \( \mathrm{HXO_n} \), as more oxygen atoms bond to the central atom, the electron density is pulled away from the acidic hydrogen. This stabilization of the conjugate base increases the acid’s strength.
     </p>
-    <h3>Effect of Oxidation Number</h3>
+    <h3>Oxidation Number</h3>
     <p>
-      In a series of oxyacids, the acidity increases with the oxidation number of the central atom. A higher oxidation state indicates a stronger electron-withdrawing effect, further stabilizing the conjugate base.
+      For a series of oxyacids, a higher oxidation number of the central atom indicates a stronger electron-withdrawing effect, thus producing a stronger acid.
     </p>
-    <h3>Ranking of Halogen Oxyacids</h3>
+    <h3>Example: Ranking Halogen Oxyacids</h3>
     <p>
-      Consider the 0.1 M solutions of the following oxyacids:
+      For 0.1 M solutions of:
     </p>
     <ul>
       <li>\( \mathrm{HClO_2} \) (chlorous acid)</li>
@@ -271,14 +287,149 @@
       <li>\( \mathrm{HIO_2} \) (iodous acid)</li>
     </ul>
     <p>
-      Based on the electronegativity of the halogen, the expected order of acid strength is:
+      The expected order of acidity is:
     </p>
     <div class="math">
       $$\mathrm{HClO_2} > \mathrm{HBrO_2} > \mathrm{HIO_2}$$
     </div>
     <p>
-      Chlorine is more electronegative than bromine, and bromine is more electronegative than iodine. Therefore, the conjugate base of \( \mathrm{HClO_2} \) is most stabilized, making it the strongest acid among the three.
+      This order reflects the decreasing electronegativity from chlorine to iodine.
     </p>
+  </section>
+  
+  <!-- Chapter 7: Weak Bases and Kb Calculations -->
+  <section id="chapter7">
+    <h2>Chapter 7: Weak Bases and \(K_b\) Calculations</h2>
+    <p>
+      Like weak acids, weak bases only partially react with water. For a weak base \( \mathrm{B} \), the equilibrium is:
+    </p>
+    <div class="math">
+      $$\mathrm{B + H_2O \rightleftharpoons BH^+ + OH^-}$$
+    </div>
+    <p>
+      The base dissociation constant is given by:
+    </p>
+    <div class="math">
+      $$K_b = \frac{[BH^+][OH^-]}{[B]}$$
+    </div>
+    <p>
+      And the pKb is defined as:
+    </p>
+    <div class="math">
+      $$pK_b = -\log_{10}(K_b)$$
+    </div>
+    <div class="calc-container">
+      <h3>Kb Calculator</h3>
+      <label for="bh_conc">[BH<sup>+</sup>] (mol/L):</label>
+      <input type="number" id="bh_conc" placeholder="e.g., 1e-4" step="any">
+      
+      <label for="oh_conc">[OH<sup>-</sup>] (mol/L):</label>
+      <input type="number" id="oh_conc" placeholder="e.g., 1e-4" step="any">
+      
+      <label for="b_conc">[B] (mol/L):</label>
+      <input type="number" id="b_conc" placeholder="e.g., 0.1" step="any">
+      
+      <button onclick="calculateKb()">Calculate Kb</button>
+      <div class="result" id="kb_result"></div>
+      
+      <h4>pKb Conversion</h4>
+      <label for="kb_value">Enter Kb value:</label>
+      <input type="number" id="kb_value" placeholder="e.g., 1e-5" step="any">
+      <button onclick="calculatePKb()">Calculate pKb</button>
+      <div class="result" id="pkb_result"></div>
+    </div>
+  </section>
+  
+  <!-- Chapter 8: Factors Affecting Strong Acid Strength -->
+  <section id="chapter8">
+    <h2>Chapter 8: Factors Affecting Strong Acid Strength</h2>
+    <p>
+      Strong acids are defined by their nearly complete dissociation in water; however, subtle differences exist among them. Several factors determine why one strong acid can be stronger than another:
+    </p>
+    <ul>
+      <li><strong>Bond Strength:</strong> Weaker bonds to hydrogen facilitate easier proton loss.</li>
+      <li><strong>Electronegativity:</strong> A more electronegative central atom stabilizes the negative charge on the conjugate base.</li>
+      <li><strong>Solvation Effects:</strong> The ability of water to stabilize the ions formed can vary with acid structure.</li>
+    </ul>
+    <p>
+      For example, while both HCl and HBr are strong acids, subtle differences in bond dissociation energies and solvation can lead to differences in their behavior in concentrated solutions.
+    </p>
+    <div class="interactive-container">
+      <h3>Strong Acid Comparison</h3>
+      <label for="acid_select">Select an acid:</label>
+      <select id="acid_select" onchange="showAcidInfo()">
+        <option value="">-- Choose an Acid --</option>
+        <option value="HCl">HCl</option>
+        <option value="HBr">HBr</option>
+        <option value="HI">HI</option>
+        <option value="HClO4">HClO₄</option>
+      </select>
+      <div class="element-detail" id="acid_info">
+        <p>Select an acid from the list to see details.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Chapter 9: Titration Curves and Zones -->
+  <section id="chapter9">
+    <h2>Chapter 9: Titration Curves and Zones</h2>
+    <p>
+      Titration curves offer a graphical representation of the pH change during titration. Key regions include:
+    </p>
+    <ul>
+      <li><strong>Initial Region:</strong> The starting pH of the analyte solution.</li>
+      <li><strong>Buffer Region:</strong> A relatively flat area where pH changes slowly.</li>
+      <li><strong>Equivalence Point:</strong> The point at which the amount of titrant equals the amount of analyte.</li>
+      <li><strong>Post-Equivalence Region:</strong> pH changes rapidly after the equivalence point.</li>
+    </ul>
+    <p>
+      Use the interactive graph below to see a simplified titration curve.
+    </p>
+    <div class="visual-container">
+      <canvas id="titrationChart" width="800" height="300" style="border:1px solid #ccc;"></canvas>
+      <div class="result" id="titrationZone"></div>
+      <button onclick="highlightZone('initial')">Initial Region</button>
+      <button onclick="highlightZone('buffer')">Buffer Region</button>
+      <button onclick="highlightZone('equivalence')">Equivalence Point</button>
+      <button onclick="highlightZone('post')">Post-Equivalence</button>
+    </div>
+  </section>
+  
+  <!-- Chapter 10: Interactive Periodic Table -->
+  <section id="chapter10">
+    <h2>Chapter 10: Interactive Periodic Table</h2>
+    <p>
+      Explore selected elements that play key roles in acid–base chemistry. Click on an element to see its details.
+    </p>
+    <div class="visual-container">
+      <table class="periodic-table">
+        <tr>
+          <td onclick="showElementDetail('H')">H<br><small>1</small></td>
+          <td colspan="16"></td>
+          <td onclick="showElementDetail('He')">He<br><small>2</small></td>
+        </tr>
+        <tr>
+          <td onclick="showElementDetail('Li')">Li<br><small>3</small></td>
+          <td onclick="showElementDetail('Be')">Be<br><small>4</small></td>
+          <td colspan="10"></td>
+          <td onclick="showElementDetail('B')">B<br><small>5</small></td>
+          <td onclick="showElementDetail('C')">C<br><small>6</small></td>
+          <td onclick="showElementDetail('N')">N<br><small>7</small></td>
+          <td onclick="showElementDetail('O')">O<br><small>8</small></td>
+          <td onclick="showElementDetail('F')">F<br><small>9</small></td>
+          <td onclick="showElementDetail('Ne')">Ne<br><small>10</small></td>
+        </tr>
+        <!-- Additional rows can be added as needed -->
+        <tr>
+          <td onclick="showElementDetail('Cl')">Cl<br><small>17</small></td>
+          <td onclick="showElementDetail('Br')">Br<br><small>35</small></td>
+          <td onclick="showElementDetail('I')">I<br><small>53</small></td>
+        </tr>
+      </table>
+      <div class="element-detail" id="element_detail">
+        <p>Click on an element to view details.</p>
+      </div>
+    </div>
   </section>
   
   <footer>
@@ -286,7 +437,7 @@
   </footer>
   
   <script>
-    // Chapter 1: Calculate Ka from input concentrations.
+    // Chapter 1: Calculate Ka
     function calculateKa() {
       const h = parseFloat(document.getElementById('h_conc').value);
       const a = parseFloat(document.getElementById('a_conc').value);
@@ -300,7 +451,7 @@
       resultDiv.textContent = "Calculated Ka: " + ka.toExponential(3);
     }
     
-    // Calculate pKa from Ka value.
+    // Calculate pKa
     function calculatePka() {
       const kaVal = parseFloat(document.getElementById('ka_value').value);
       const resultDiv = document.getElementById('pka_result');
@@ -312,7 +463,7 @@
       resultDiv.textContent = "Calculated pKa: " + pKa.toFixed(3);
     }
     
-    // Chapter 2: Buffer pH Calculation using Henderson–Hasselbalch.
+    // Chapter 2: Buffer pH Calculation
     function calculateBufferPH() {
       const pKa = parseFloat(document.getElementById('buffer_pka').value);
       const a = parseFloat(document.getElementById('buffer_a').value);
@@ -327,7 +478,7 @@
       resultDiv.textContent = "Calculated Buffer pH: " + pH.toFixed(3);
     }
     
-    // Chapter 4: Calculate pH from [H⁺].
+    // Chapter 4: pH Calculation from [H+]
     function calculatePH() {
       const hConc = parseFloat(document.getElementById('h_concentration').value);
       const resultDiv = document.getElementById('ph_result');
@@ -339,7 +490,7 @@
       resultDiv.textContent = "Calculated pH: " + pH.toFixed(3);
     }
     
-    // Chapter 4: Calculate [H⁺] from pH.
+    // Chapter 4: [H+] from pH
     function calculateHConcentration() {
       const pH = parseFloat(document.getElementById('ph_value').value);
       const resultDiv = document.getElementById('h_from_ph_result');
@@ -349,6 +500,130 @@
       }
       const hConc = Math.pow(10, -pH);
       resultDiv.textContent = "Calculated [H⁺]: " + hConc.toExponential(3) + " mol/L";
+    }
+    
+    // Chapter 7: Calculate Kb for Weak Bases
+    function calculateKb() {
+      const bh = parseFloat(document.getElementById('bh_conc').value);
+      const oh = parseFloat(document.getElementById('oh_conc').value);
+      const b = parseFloat(document.getElementById('b_conc').value);
+      const resultDiv = document.getElementById('kb_result');
+      if (isNaN(bh) || isNaN(oh) || isNaN(b) || b === 0) {
+        resultDiv.textContent = "Please enter valid numbers (and ensure [B] is not zero).";
+        return;
+      }
+      const kb = (bh * oh) / b;
+      resultDiv.textContent = "Calculated Kb: " + kb.toExponential(3);
+    }
+    
+    // Calculate pKb from Kb
+    function calculatePKb() {
+      const kbVal = parseFloat(document.getElementById('kb_value').value);
+      const resultDiv = document.getElementById('pkb_result');
+      if (isNaN(kbVal) || kbVal <= 0) {
+        resultDiv.textContent = "Please enter a valid positive Kb value.";
+        return;
+      }
+      const pKb = -Math.log10(kbVal);
+      resultDiv.textContent = "Calculated pKb: " + pKb.toFixed(3);
+    }
+    
+    // Chapter 8: Show Acid Information
+    function showAcidInfo() {
+      const acid = document.getElementById('acid_select').value;
+      const infoDiv = document.getElementById('acid_info');
+      let info = "";
+      if (acid === "HCl") {
+        info = "<strong>HCl:</strong> A strong acid that completely dissociates in water. Bond energy is relatively low, leading to high acidity.";
+      } else if (acid === "HBr") {
+        info = "<strong>HBr:</strong> Also a strong acid. Slightly weaker than HCl due to differences in bond strengths and solvation.";
+      } else if (acid === "HI") {
+        info = "<strong>HI:</strong> Generally the strongest among the hydrogen halides because of the very weak H–I bond.";
+      } else if (acid === "HClO4") {
+        info = "<strong>HClO₄:</strong> Perchloric acid is one of the strongest acids known, due to excellent charge delocalization in its conjugate base.";
+      } else {
+        info = "<p>Select an acid to view its properties.</p>";
+      }
+      infoDiv.innerHTML = info;
+    }
+    
+    // Chapter 9: Draw a simple titration curve on the canvas
+    function drawTitrationCurve() {
+      const canvas = document.getElementById('titrationChart');
+      if (!canvas.getContext) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw axes
+      ctx.beginPath();
+      ctx.moveTo(50, 250);
+      ctx.lineTo(750, 250);
+      ctx.moveTo(50, 250);
+      ctx.lineTo(50, 50);
+      ctx.strokeStyle = "#000";
+      ctx.stroke();
+      
+      // Draw a simplified titration curve (sigmoidal shape)
+      ctx.beginPath();
+      ctx.moveTo(50, 220);
+      for (let x = 50; x <= 750; x++) {
+        let pH = 14 - (14 / (1 + Math.exp(-(x-400)/30)));
+        let y = 250 - (pH * 15); // scale factor for visualization
+        ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = "#d9534f";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+    
+    // Highlight regions on the titration curve (simple text update)
+    function highlightZone(zone) {
+      let zoneText = "";
+      if (zone === "initial") {
+        zoneText = "Initial Region: The starting pH of the analyte solution.";
+      } else if (zone === "buffer") {
+        zoneText = "Buffer Region: Where the pH changes slowly, resisting changes due to added titrant.";
+      } else if (zone === "equivalence") {
+        zoneText = "Equivalence Point: The point where the titrant exactly neutralizes the analyte.";
+      } else if (zone === "post") {
+        zoneText = "Post-Equivalence Region: pH changes rapidly as excess titrant is added.";
+      }
+      document.getElementById('titrationZone').textContent = zoneText;
+    }
+    
+    // Draw titration curve on page load
+    window.onload = function() {
+      drawTitrationCurve();
+    };
+    
+    // Chapter 10: Interactive Periodic Table
+    const elementData = {
+      "H": { name: "Hydrogen", atomicNumber: 1, group: 1, info: "Essential in acids and bases, forms H⁺." },
+      "He": { name: "Helium", atomicNumber: 2, group: 18, info: "Noble gas; chemically inert." },
+      "Li": { name: "Lithium", atomicNumber: 3, group: 1, info: "Alkali metal used in batteries." },
+      "Be": { name: "Beryllium", atomicNumber: 4, group: 2, info: "Toxic; important in aerospace materials." },
+      "B": { name: "Boron", atomicNumber: 5, group: 13, info: "Semiconductor and in boric acid." },
+      "C": { name: "Carbon", atomicNumber: 6, group: 14, info: "Basis of organic compounds." },
+      "N": { name: "Nitrogen", atomicNumber: 7, group: 15, info: "Major component of the atmosphere." },
+      "O": { name: "Oxygen", atomicNumber: 8, group: 16, info: "Essential for combustion and respiration." },
+      "F": { name: "Fluorine", atomicNumber: 9, group: 17, info: "Most electronegative element." },
+      "Ne": { name: "Neon", atomicNumber: 10, group: 18, info: "Noble gas used in signage." },
+      "Cl": { name: "Chlorine", atomicNumber: 17, group: 17, info: "Used in disinfection and making acids." },
+      "Br": { name: "Bromine", atomicNumber: 35, group: 17, info: "Liquid halogen with distinct odor." },
+      "I": { name: "Iodine", atomicNumber: 53, group: 17, info: "Used as an antiseptic; less electronegative than Cl or Br." }
+    };
+    
+    function showElementDetail(symbol) {
+      const data = elementData[symbol];
+      const detailDiv = document.getElementById('element_detail');
+      if (data) {
+        detailDiv.innerHTML = `<strong>${data.name} (${symbol})</strong><br>
+                               Atomic Number: ${data.atomicNumber}<br>
+                               Group: ${data.group}<br>
+                               Info: ${data.info}`;
+      } else {
+        detailDiv.innerHTML = "<p>No data available.</p>";
+      }
     }
   </script>
 </body>
